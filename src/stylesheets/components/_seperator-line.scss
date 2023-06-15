@@ -1,0 +1,21 @@
+@mixin line {
+	border-top: solid 1px;
+	border-color: var(--palette-grey-200);
+}
+
+.vertical-line {
+	@include line;
+	height: 100%;
+}
+.vertical-half-line {
+	@include line;
+	height: 30%;
+}
+.horizontal-line {
+	@include line;
+	width: 100%;
+}
+.horizontal-half-line {
+	@include line;
+	width: 30%;
+}

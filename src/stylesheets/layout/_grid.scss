@@ -1,0 +1,17 @@
+@use '../base/variables' as *;
+
+.container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.row {
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+	align-items: center;
+	justify-content: center;
+	font-size: small;
+	gap: $spacer;
+}
