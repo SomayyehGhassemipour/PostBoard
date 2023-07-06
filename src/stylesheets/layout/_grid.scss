@@ -2,13 +2,15 @@
 
 .container {
 	display: flex;
+	gap: 1rem;
 	align-items: center;
 	justify-content: center;
+	padding: 0.5rem;
 }
 
 .row {
 	display: flex;
-	flex-wrap: wrap;
+	flex-direction: row;
 	width: 100%;
 	align-items: center;
 	justify-content: center;

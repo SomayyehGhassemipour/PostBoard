@@ -8,6 +8,7 @@ export default class Button extends Component {
 				className={this.props.classname}
 				form={this.props.form}
 				onClick={this.props.clickHandler}
+				type={this.props.type}
 			>
 				{this.props.children}
 			</button>
@@ -18,6 +19,7 @@ export default class Button extends Component {
 Button.propTypes = {
 	classname: PropTypes.string.isRequired,
 	form: PropTypes.string,
+	type: PropTypes.string,
 	children: PropTypes.node.isRequired,
-	clickHandler: PropTypes.func.isRequired,
+	clickHandler: PropTypes.func,
 };

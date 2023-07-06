@@ -11,12 +11,14 @@ export default class Input extends Component {
 						name={this.props.name}
 						type={this.props.type}
 						placeholder={this.props.placeholder}
+						onChange={this.props.onchangeHandler}
 					/>
 				) : (
 					<textarea
 						name={this.props.name}
 						rows="4"
 						placeholder={this.props.placeholder}
+						onChange={this.props.onchangeHandler}
 					/>
 				)}
 			</div>
@@ -30,4 +32,5 @@ Input.propTypes = {
 	element: PropTypes.string.isRequired,
 	type: PropTypes.string.isRequired,
 	placeholder: PropTypes.string.isRequired,
+	onchangeHandler: PropTypes.func,
 };
