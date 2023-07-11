@@ -1,31 +1,29 @@
-import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-export default class Input extends Component {
-	render() {
-		return (
-			<div className="field">
-				{this.props.label && <label>{this.props.label}</label>}
-				{this.props.element === 'input' ? (
-					<input
-						name={this.props.name}
-						type={this.props.type}
-						placeholder={this.props.placeholder}
-						onChange={this.props.onchangeHandler}
-					/>
-				) : (
-					<textarea
-						name={this.props.name}
-						rows="4"
-						placeholder={this.props.placeholder}
-						onChange={this.props.onchangeHandler}
-					/>
-				)}
-			</div>
-		);
-	}
-}
-
+const Input = (props) => {
+	return (
+		<div className="field">
+			{props.label && <label>{props.label}</label>}
+			{props.element === 'input' ? (
+				<input
+					name={props.name}
+					type={props.type}
+					placeholder={props.placeholder}
+					required
+					onChange={props.onchangeHandler}
+				/>
+			) : (
+				<textarea
+					name={props.name}
+					rows="4"
+					placeholder={props.placeholder}
+					onChange={props.onchangeHandler}
+				/>
+			)}
+		</div>
+	);
+};
+export default Input;
 Input.propTypes = {
 	name: PropTypes.string.isRequired,
 	label: PropTypes.string,

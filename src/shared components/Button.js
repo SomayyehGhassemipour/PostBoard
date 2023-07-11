@@ -1,21 +1,18 @@
-import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-export default class Button extends Component {
-	render() {
-		return (
-			<button
-				className={this.props.classname}
-				form={this.props.form}
-				onClick={this.props.clickHandler}
-				type={this.props.type}
-			>
-				{this.props.children}
-			</button>
-		);
-	}
-}
-
+const Button = (props) => {
+	return (
+		<button
+			className={props.classname}
+			form={props.form}
+			onClick={props.clickHandler}
+			type={props.type}
+		>
+			{props.children}
+		</button>
+	);
+};
+export default Button;
 Button.propTypes = {
 	classname: PropTypes.string.isRequired,
 	form: PropTypes.string,

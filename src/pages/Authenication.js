@@ -1,94 +1,93 @@
-import React, { Component } from 'react';
 import Button from '../shared components/Button';
 import Input from '../shared components/Input';
-import PropTypes from 'prop-types';
-import { withHooksHOC } from '../HOC/withHooksHOC ';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { useUserAuth } from '../services/firebase/authContext';
 
-const inputs = [
-	{
-		id: '1',
-		name: 'email',
-		label: 'Email',
-		element: 'input',
-		type: 'email',
-		placeholder: 'Email',
-	},
-	{
-		id: '2',
-		name: 'password',
-		label: 'Password',
-		placeholder: 'Password',
-		type: 'password',
-		element: 'input',
-	},
-];
+const Authenication = () => {
+	const [state, setstate] = useState({
+		email: '',
+		password: '',
+	});
+	const { email, password } = state;
 
-class Authenication extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			email: '',
-			password: '',
-		};
-	}
+	const inputs = [
+		{
+			id: '1',
+			name: 'email',
+			label: 'Email',
+			element: 'input',
+			type: 'email',
+			value: email,
+			placeholder: 'Email',
+		},
+		{
+			id: '2',
+			name: 'password',
+			label: 'Password',
+			placeholder: 'Passwords',
+			type: 'password',
+			value: password,
+			element: 'input',
+		},
+	];
 
-	changeHandler = (event) => {
-		const field = event.target.name;
-		this.setState({ [field]: event.target.value });
+	const navigate = useNavigate();
+	const userAuth = useUserAuth();
+
+	const changeHandler = (event) => {
+		// const field = event.target.name;
+		// setState({ [field]: event.target.value });
+		let { name, value } = event.target;
+		setstate({ ...state, [name]: value });
 	};
 
-	handleSubmit = async (event) => {
+	const handleSubmit = async (event) => {
 		event.preventDefault();
-		await this.props.userAuth
-			.logIn(this.state.email, this.state.password)
-			.then((userCredential) => {
-				const user = userCredential.user;
-				console.log(user);
-				this.props.navigate('/home');
+
+		await userAuth
+			.logIn(state.email, state.password)
+			.then(() => {
+				navigate('/home');
 			})
 			.catch((error) => {
 				alert(error.message);
 			});
 	};
-	render() {
-		return (
-			<div className="container">
-				<div className="card">
-					<div className="card-header">
-						<h1>LOGIN</h1>
-					</div>
-					<div className="card-body">
-						<form id="form" onSubmit={this.handleSubmit}>
-							{inputs.map((input) => (
-								<Input
-									key={input.id}
-									name={input.name}
-									label={input.label}
-									placeholder={input.placeholder}
-									type={input.type}
-									element={input.element}
-									value={this.state[`${input.name}`]}
-									onchangeHandler={this.changeHandler}
-								/>
-							))}
-						</form>
-					</div>
-					<div className="card-footer">
-						<Button
-							classname="button-contained bg-blue-200 text-grey-500"
-							form="form"
-							type="submit"
-						>
-							Sign In
-						</Button>
-					</div>
+
+	return (
+		<div className="container">
+			<div className="card">
+				<div className="card-header">
+					<h1>LOGIN</h1>
+				</div>
+				<div className="card-body">
+					<form id="form" onSubmit={handleSubmit}>
+						{inputs.map((input) => (
+							<Input
+								key={input.id}
+								name={input.name}
+								label={input.label}
+								placeholder={input.placeholder}
+								type={input.type}
+								element={input.element}
+								value={input.value}
+								onchangeHandler={changeHandler}
+							/>
+						))}
+					</form>
+				</div>
+				<div className="card-footer">
+					<Button
+						classname="button-contained bg-blue-200 text-grey-500"
+						form="form"
+						type="submit"
+					>
+						Sign In
+					</Button>
 				</div>
 			</div>
-		);
-	}
-}
-export default withHooksHOC(Authenication);
-Authenication.propTypes = {
-	navigate: PropTypes.any,
-	userAuth: PropTypes.any,
+		</div>
+	);
 };
+export default Authenication;
