@@ -2,7 +2,7 @@ import Button from '../shared components/Button';
 import Input from '../shared components/Input';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import { useUserAuth } from '../services/firebase/authContext';
+import { useUserAuth } from '../services/firebase/AuthenicationService';
 
 const Authenication = () => {
 	const [state, setstate] = useState({
@@ -36,8 +36,6 @@ const Authenication = () => {
 	const userAuth = useUserAuth();
 
 	const changeHandler = (event) => {
-		// const field = event.target.name;
-		// setState({ [field]: event.target.value });
 		let { name, value } = event.target;
 		setstate({ ...state, [name]: value });
 	};
@@ -45,14 +43,9 @@ const Authenication = () => {
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 
-		await userAuth
-			.logIn(state.email, state.password)
-			.then(() => {
-				navigate('/home');
-			})
-			.catch((error) => {
-				alert(error.message);
-			});
+		const res = await userAuth.logIn(email, password);
+		if (res === true) navigate('./home');
+		else alert(res.error);
 	};
 
 	return (

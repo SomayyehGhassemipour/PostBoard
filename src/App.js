@@ -1,6 +1,6 @@
 import './App.scss';
 import Authenication from './pages/Authenication';
-import { UserAuthContextProvider } from './services/firebase/authContext';
+import { UserAuthContextProvider } from './services/firebase/AuthenicationService';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Home from './pages/Home';
 
