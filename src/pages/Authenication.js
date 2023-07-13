@@ -44,7 +44,7 @@ const Authenication = () => {
 		event.preventDefault();
 
 		const res = await userAuth.logIn(email, password);
-		if (res === true) navigate('./home');
+		if (res === true) navigate('/home');
 		else alert(res.error);
 	};
 
@@ -72,7 +72,7 @@ const Authenication = () => {
 				</div>
 				<div className="card-footer">
 					<Button
-						classname="button-contained bg-blue-200 text-grey-500"
+						classname="button-text bg-blue-200 text-grey-500"
 						form="form"
 						type="submit"
 					>

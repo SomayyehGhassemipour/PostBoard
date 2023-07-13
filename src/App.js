@@ -9,8 +9,9 @@ function App() {
 		<UserAuthContextProvider>
 			<BrowserRouter>
 				<Routes>
+					<Route path="/" element={<Home />} />
 					<Route path="/home" element={<Home />} />
-					<Route path="/" element={<Authenication />} />
+					<Route path="/login" element={<Authenication />} />
 				</Routes>
 			</BrowserRouter>
 		</UserAuthContextProvider>

@@ -1,0 +1,9 @@
+@use '../base/variables' as *;
+
+.list-item {
+	border-radius: 8px;
+	flex-shrink: 0;
+	margin-bottom: 1px;
+	background-color: var(--palette-grey-200);
+	padding: $spacer;
+}
