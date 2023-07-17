@@ -10,16 +10,29 @@ export default function Home() {
 	const signOutHandler = (event) => {
 		event.preventDefault();
 		userAuth.logOut();
-	};
-
-	if (!userAuth.user) {
 		navigate('/login');
-	} else
-		return (
-			<>
-				<div className="container-row bg-grey-200">
-					<h3 className="text-grey-500">Home</h3>
-					<div style={{ marginLeft: 'auto' }}>
+	};
+	const signInHandler = (event) => {
+		event.preventDefault();
+		navigate('/login');
+	};
+	return (
+		<>
+			<div className="container-row bg-grey-200">
+				<h3 className="text-grey-500">PostBoard</h3>
+				<div style={{ marginLeft: 'auto' }}>
+					{!userAuth.user ? (
+						<div className="container-row">
+							<Icon url="icons/icons8-avatar-24.png" name="delete" />
+							<p className="text-grey-500">Gust user</p>
+							<Button
+								classname="button-text bg-blue-200 text-grey-500"
+								clickHandler={signInHandler}
+							>
+								Sign In
+							</Button>
+						</div>
+					) : (
 						<div className="container-row">
 							<Icon url="icons/icons8-avatar-24.png" name="delete" />
 							<p className="text-grey-500">{userAuth.user.email}</p>
@@ -30,9 +43,10 @@ export default function Home() {
 								Sign out
 							</Button>
 						</div>
-					</div>
+					)}
 				</div>
-				<PostsList />
-			</>
-		);
+			</div>
+			<PostsList />
+		</>
+	);
 }

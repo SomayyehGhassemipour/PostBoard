@@ -49,38 +49,43 @@ const Authenication = () => {
 	};
 
 	return (
-		<div className="container">
-			<div className="card">
-				<div className="card-header">
-					<h1>LOGIN</h1>
-				</div>
-				<div className="card-body">
-					<form id="form" onSubmit={handleSubmit}>
-						{inputs.map((input) => (
-							<Input
-								key={input.id}
-								name={input.name}
-								label={input.label}
-								placeholder={input.placeholder}
-								type={input.type}
-								element={input.element}
-								value={input.value}
-								onchangeHandler={changeHandler}
-							/>
-						))}
-					</form>
-				</div>
-				<div className="card-footer">
-					<Button
-						classname="button-text bg-blue-200 text-grey-500"
-						form="form"
-						type="submit"
-					>
-						Sign In
-					</Button>
+		<>
+			<div className="container-row bg-grey-200">
+				<h3 className="text-grey-500">PostBoard</h3>
+			</div>
+			<div className="container">
+				<div className="card">
+					<div className="card-header">
+						<h1>LOGIN</h1>
+					</div>
+					<div className="card-body">
+						<form id="form" onSubmit={handleSubmit}>
+							{inputs.map((input) => (
+								<Input
+									key={input.id}
+									name={input.name}
+									label={input.label}
+									placeholder={input.placeholder}
+									type={input.type}
+									element={input.element}
+									value={input.value}
+									onchangeHandler={changeHandler}
+								/>
+							))}
+						</form>
+					</div>
+					<div className="card-footer">
+						<Button
+							classname="button-text bg-blue-200 text-grey-500"
+							form="form"
+							type="submit"
+						>
+							Sign In
+						</Button>
+					</div>
 				</div>
 			</div>
-		</div>
+		</>
 	);
 };
 export default Authenication;
