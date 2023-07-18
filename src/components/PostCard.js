@@ -38,7 +38,7 @@ export const PostCard = (props) => {
 	};
 	const deleteHandler = async () => {
 		const confirmBox = window.confirm(
-			'Do you really want to delete this Crumb?'
+			'Do you really want to delete this Post?'
 		);
 		if (confirmBox === true) {
 			try {

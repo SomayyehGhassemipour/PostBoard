@@ -1,6 +1,4 @@
 import { useState, useEffect } from 'react';
-// import Icon from '../shared components/Icon';
-// import Button from '../shared components/Button';
 import { useParams } from 'react-router-dom';
 import { readPost } from '../services/post/PostService';
 import { PostCard } from '../components/PostCard';

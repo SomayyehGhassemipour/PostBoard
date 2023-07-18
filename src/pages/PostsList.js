@@ -40,10 +40,11 @@ export const PostsList = () => {
 							}}
 						>
 							<PostCard
+								id={post.id}
 								title={post.data.title}
 								author={post.data.author}
 								description={post.data.description.slice(0, 200) + '...'}
-								editable={false}
+								editBottons={false}
 							></PostCard>
 						</Button>
 					))}

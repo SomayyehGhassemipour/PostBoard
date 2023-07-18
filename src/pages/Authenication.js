@@ -50,9 +50,6 @@ const Authenication = () => {
 
 	return (
 		<>
-			<div className="container-row bg-grey-200">
-				<h3 className="text-grey-500">PostBoard</h3>
-			</div>
 			<div className="container">
 				<div className="card">
 					<div className="card-header">

@@ -4,11 +4,13 @@ import { UserAuthContextProvider } from './services/firebase/AuthenicationServic
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Home from './pages/Home';
 import { Post } from './pages/Post';
+import { Navbar } from './components/Navbar';
 
 function App() {
 	return (
 		<UserAuthContextProvider>
 			<BrowserRouter>
+				<Navbar />
 				<Routes>
 					<Route path="/" element={<Home />} />
 					<Route path="/home" element={<Home />} />
