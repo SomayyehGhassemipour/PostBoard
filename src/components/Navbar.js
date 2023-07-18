@@ -7,8 +7,9 @@ import Icon from '../shared components/Icon';
 export const Navbar = () => {
 	const userAuth = useUserAuth();
 	const navigate = useNavigate();
-	console.log(userAuth.user);
-
+	const currentPage = '/login' === window.location.pathname;
+	const currentUser = !userAuth.user ? 'Guest User' : userAuth.user.email;
+	console.log(currentUser);
 	useEffect(() => {
 		if (userAuth.user) navigate('/home');
 	}, []);
@@ -18,11 +19,6 @@ export const Navbar = () => {
 		userAuth.logOut();
 		navigate('/login');
 	};
-	const signInHandler = (event) => {
-		event.preventDefault();
-		navigate('/login');
-	};
-	const currentPage = '/login' === window.location.pathname;
 
 	return (
 		<div className="container-row bg-grey-200">
@@ -35,31 +31,18 @@ export const Navbar = () => {
 				PostBoard
 			</Button>
 			<div style={{ marginLeft: 'auto' }}>
-				{!userAuth.user ? (
-					<div className="container-row">
-						<Icon url="icons/icons8-avatar-24.png" name="delete" />
-						<p className="text-grey-500">Gust user</p>
-						{currentPage === '/login' && (
-							<Button
-								classname="button-text bg-blue-200 text-grey-500"
-								clickHandler={signInHandler}
-							>
-								Sign In
-							</Button>
-						)}
-					</div>
-				) : (
-					<div className="container-row">
-						<Icon url="icons/icons8-avatar-24.png" name="delete" />
-						<p className="text-grey-500">{userAuth.user.email}</p>
+				<div className="container-row">
+					<Icon url="icons/icons8-avatar-24.png" name="delete" />
+					<p className="text-grey-500">{currentUser}</p>
+					{!currentPage && (
 						<Button
 							classname="button-text bg-blue-200 text-grey-500"
 							clickHandler={signOutHandler}
 						>
-							Sign out
+							Sign Out
 						</Button>
-					</div>
-				)}
+					)}
+				</div>
 			</div>
 		</div>
 	);

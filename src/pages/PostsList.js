@@ -21,7 +21,6 @@ export const PostsList = () => {
 	}, []);
 
 	const showPostHandler = (id) => {
-		console.log(id);
 		navigate(`/post/${id}`);
 	};
 
