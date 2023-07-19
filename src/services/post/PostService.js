@@ -11,9 +11,7 @@ import {
 //add a new post
 export const addPost = async (newPost) => {
 	try {
-		const postRef = await addDoc(collection(db, 'posts'), {
-			post: newPost,
-		});
+		const postRef = await addDoc(collection(db, 'posts'), newPost);
 		return postRef.id;
 	} catch (error) {
 		return { error: error.message };

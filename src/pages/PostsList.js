@@ -23,6 +23,9 @@ export const PostsList = () => {
 	const showPostHandler = (id) => {
 		navigate(`/post/${id}`);
 	};
+	const addPostHandler = () => {
+		navigate('/new-post-form');
+	};
 
 	return (
 		<div className="container">
@@ -30,22 +33,33 @@ export const PostsList = () => {
 				<p className="text-grey-200">Loading posts...</p>
 			) : (
 				<div className="container-column">
+					<Button
+						classname="button-text  bg-blue-200 text-grey-500"
+						clickHandler={addPostHandler}
+					>
+						+ Add new post
+					</Button>
 					{posts.map((post) => (
-						<Button
-							classname="button-contained"
-							key={post.id}
-							clickHandler={() => {
-								showPostHandler(post.id);
-							}}
-						>
-							<PostCard
-								id={post.id}
-								title={post.data.title}
-								author={post.data.author}
-								description={post.data.description.slice(0, 200) + '...'}
-								editBottons={false}
-							></PostCard>
-						</Button>
+						<div className="card" key={post.id}>
+							<Button
+								classname="button-contained"
+								key={post.id}
+								clickHandler={() => {
+									showPostHandler(post.id);
+								}}
+							>
+								<PostCard
+									id={post.id}
+									title={post.data.title}
+									author={post.data.author}
+									description={
+										post.data.description.length > 200
+											? post.data.description.slice(0, 200) + '...'
+											: post.data.description
+									}
+								></PostCard>
+							</Button>
+						</div>
 					))}
 				</div>
 			)}
