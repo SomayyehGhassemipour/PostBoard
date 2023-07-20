@@ -6,9 +6,11 @@ import Icon from '../shared components/Icon';
 import { deletePost } from '../services/post/PostService';
 import { useNavigate } from 'react-router-dom';
 import { PostCard } from '../components/PostCard';
+import { useUserAuth } from '../services/firebase/AuthenicationService';
 
 export const Post = () => {
 	const navigate = useNavigate();
+	const userAuth = useUserAuth();
 
 	const [postData, setPost] = useState([]);
 	let { id } = useParams();
@@ -40,21 +42,23 @@ export const Post = () => {
 	return (
 		<div className="container">
 			<div className="card" style={{ width: '800px' }}>
-				<div className="container-row">
-					<div style={{ marginLeft: 'auto' }}>
-						<Button
-							classname="button-contained"
-							clickHandler={() => {
-								navigate(`/update-post/${id}`);
-							}}
-						>
-							<Icon url="/icons/icons8-edit-24.png" name="edit" />
-						</Button>
-						<Button classname="button-contained" clickHandler={deleteHandler}>
-							<Icon url="/icons/icons8-delete-24.png" name="delete" />
-						</Button>
+				{userAuth.user.email === postData.author && (
+					<div className="container-row">
+						<div style={{ marginLeft: 'auto' }}>
+							<Button
+								classname="button-contained"
+								clickHandler={() => {
+									navigate(`/update-post/${id}`);
+								}}
+							>
+								<Icon url="/icons/icons8-edit-24.png" name="edit" />
+							</Button>
+							<Button classname="button-contained" clickHandler={deleteHandler}>
+								<Icon url="/icons/icons8-delete-24.png" name="delete" />
+							</Button>
+						</div>
 					</div>
-				</div>
+				)}
 				{postData.length === 0 ? (
 					<p className="text-grey-200">Loading ...</p>
 				) : (
